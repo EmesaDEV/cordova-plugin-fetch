@@ -81,6 +81,7 @@ SOFTWARE.
 
         <framework src="Security.framework" />
         <framework src="SystemConfiguration.framework" />
+        <framework src="libiconv.2.4.0.tbd" />
     </platform>
 
     <!-- android -->

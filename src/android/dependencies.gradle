@@ -6,6 +6,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.squareup.okhttp:okhttp:2.7.0'
-    compile 'com.squareup.okio:okio:1.6.0'
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile 'com.squareup.okio:okio:1.11.0'
 }

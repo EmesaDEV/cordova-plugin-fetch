@@ -20,10 +20,16 @@
   
   
   self.requestSerializer = [AFHTTPRequestSerializer serializer];
+  [self.requestSerializer setHTTPShouldHandleCookies:FALSE];
   [self.requestSerializer setQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, id parameters, NSError *__autoreleasing *error) {
     return parameters;
   }];
   self.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+  [self setTaskWillPerformHTTPRedirectionBlock:^NSURLRequest *(NSURLSession *session, NSURLSessionTask *task, NSURLResponse *response, NSURLRequest *request) {
+        // This will be called if the URL redirects
+    return nil; // return request to follow the redirect, or return nil to stop the redirect
+  }];
   
   return self;
 }
@@ -44,6 +50,8 @@
   if (parameters == nil || [parameters isKindOfClass:[NSNull class]]) {
     parameters = @"";
   }
+    
+    NSLog(@"URLString %@", URLString);
   
   NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:&serializationError];
   if (serializationError) {
@@ -68,9 +76,13 @@
     }
   }
   }
+    
+    
+    NSLog(@"URL: %@", request.URL);
   
   __block NSURLSessionDataTask *dataTask = nil;
-  dataTask = [self dataTaskWithRequest:request completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
+    
+    dataTask = [self dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
     if (error) {
       if (failure) {
         failure(dataTask, error, responseObject);
