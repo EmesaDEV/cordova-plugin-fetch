@@ -55,7 +55,9 @@
   }
   
   FetchPlugin *__weak weakSelf = self;
-  NSURLSessionDataTask *dataTask = [[BaseClient sharedClient] dataTaskWithHTTPMethod:method URLString:urlString parameters:body headers:headers success:^(NSURLSessionDataTask *task, id responseObject) {
+  NSString *encodedString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSURLSessionDataTask *dataTask = [[BaseClient sharedClient] dataTaskWithHTTPMethod:method URLString:encodedString parameters:body headers:headers success:^(NSURLSessionDataTask *task, id responseObject) {
+
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
     
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
