@@ -55,7 +55,7 @@
   }
   
   FetchPlugin *__weak weakSelf = self;
-  NSString *encodedString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSString *encodedString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
   NSURLSessionDataTask *dataTask = [[BaseClient sharedClient] dataTaskWithHTTPMethod:method URLString:encodedString parameters:body headers:headers success:^(NSURLSessionDataTask *task, id responseObject) {
 
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
