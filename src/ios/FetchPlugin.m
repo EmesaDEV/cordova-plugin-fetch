@@ -56,7 +56,7 @@
   
   FetchPlugin *__weak weakSelf = self;
   urlString = [urlString stringByReplacingOccurrencesOfString:@"%20" withString:@" "];
-  NSCharacterSet *URLFullCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:@"@+ "] invertedSet];
+  NSCharacterSet *URLFullCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:@"@+#<>[\\]^`{|} "] invertedSet];
   NSString *encodedString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:URLFullCharacterSet];
   NSURLSessionDataTask *dataTask = [[BaseClient sharedClient] dataTaskWithHTTPMethod:method URLString:encodedString parameters:body headers:headers success:^(NSURLSessionDataTask *task, id responseObject) {
 
