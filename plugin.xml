@@ -50,13 +50,13 @@ SOFTWARE.
             </feature>
         </config-file>
 
-        <header-file src="src/ios/AFCompatibilityMacros.h" />
-
         <header-file src="src/ios/FetchPlugin.h" />
         <source-file src="src/ios/FetchPlugin.m" />
 
         <header-file src="src/ios/BaseClient.h" />
         <source-file src="src/ios/BaseClient.m" />
+
+        <header-file src="src/ios/AFNetworking/AFCompatibilityMacros.h" />
 
         <header-file src="src/ios/AFNetworking/AFHTTPSessionManager.h" />
         <source-file src="src/ios/AFNetworking/AFHTTPSessionManager.m" />
