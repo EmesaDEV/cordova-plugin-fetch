@@ -114,15 +114,14 @@ public class FetchPlugin extends CordovaPlugin {
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-
-	                        JSONObject result = new JSONObject();
+                        JSONObject result = new JSONObject();
                         try {
                             Headers responseHeaders = response.headers();
                             JSONObject allHeaders = new JSONObject();
                             for (int i = 0; i < responseHeaders.size(); i++) {
                                 String name = responseHeaders.name(i);
                                 List<String> values = responseHeaders.values(name);
-                                if (name.equals("Set-Cookie")) {
+                                if (name.equalsIgnoreCase("Set-Cookie")) {
                                     allHeaders.put(name, new JSONArray(values));
                                 } else {
                                     allHeaders.put(name, values.get(0));

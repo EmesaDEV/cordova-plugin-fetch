@@ -24,10 +24,10 @@ SOFTWARE.
   version="0.1.0">
 
     <name>Cordova Fetch</name>
- 
+
     <description>
         HTTP networking plugin that brings the fetch() standard to Cordova
-	</description>
+    </description>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -55,6 +55,8 @@ SOFTWARE.
 
         <header-file src="src/ios/BaseClient.h" />
         <source-file src="src/ios/BaseClient.m" />
+
+        <header-file src="src/ios/AFNetworking/AFCompatibilityMacros.h" />
 
         <header-file src="src/ios/AFNetworking/AFHTTPSessionManager.h" />
         <source-file src="src/ios/AFNetworking/AFHTTPSessionManager.m" />
